@@ -1,0 +1,6 @@
+google-play-scraper
+requests
+pandas
+streamlit
+google-genai
+mistralai>=1,<2

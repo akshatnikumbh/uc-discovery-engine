@@ -1,0 +1,10 @@
+play_store: 1-star: 273 kept of 300
+play_store: 2-star: 265 kept of 300
+play_store: 3-star: 248 kept of 300
+play_store: 4-star: 163 kept of 300
+play_store: 5-star: 115 kept of 300
+app_store: 0 kept
+reddit: no credentials, using public endpoints (may be rate limited)
+reddit: search errors by HTTP status: {403: 90, 'rss 404': 10, 'rss 429': 80}
+reddit: 0 posts, 0 comments
+manual: 242 rows read
