@@ -1,0 +1,36 @@
+# Render deploy settings for the Urban Company repeat-booking discovery engine.
+# Render reads this file when you choose New > Blueprint and pick this repository.
+#
+# What it does:
+#   - builds a free Python web service from requirements.txt
+#   - starts the Streamlit dashboard (app.py) on the port Render assigns
+#   - asks you for GEMINI_API_KEY in the Render dashboard, so the key never sits in code
+#
+# The dashboard reads data/raw.csv and data/classified.csv from this repository,
+# so both files must be committed alongside this one.
+
+services:
+  - type: web
+    name: uc-discovery-engine
+    runtime: python
+    plan: free
+
+    # Install the libraries listed in requirements.txt
+    buildCommand: pip install -r requirements.txt
+
+    # Start the dashboard; $PORT is filled in by Render
+    startCommand: >-
+      streamlit run app.py
+      --server.port $PORT
+      --server.address 0.0.0.0
+      --server.headless true
+
+    envVars:
+      # Same Python version the engine was built and tested on
+      - key: PYTHON_VERSION
+        value: 3.11.9
+
+      # Needed only for the "Ask the corpus" tab. sync: false means Render
+      # prompts you to paste the key during setup instead of reading it from here.
+      - key: GEMINI_API_KEY
+        sync: false
